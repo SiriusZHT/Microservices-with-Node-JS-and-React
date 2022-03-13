@@ -8,6 +8,7 @@ export default ({ postId }) => {
         await axios.post(`http://121.5.150.79:4001/posts/${postId}/comments`, {
             content
         })
+        setContent('');
     };
     return <div>
         <form onSubmit={ onSubmit }>
