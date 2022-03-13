@@ -17,7 +17,7 @@ export default () => {
         return (
             <div
                 className="card"
-                style={{ width: '30%', marginBottom: '20px' }}
+                style={{ width: '32%', marginBottom: '20px', marginLeft: '20px'}}
                 key={post.id}
             >
                 <div className="card-body">
@@ -28,7 +28,7 @@ export default () => {
             </div>
         )
     })
-    return <div className="d-flex flex-row flex-wrap justify-content-between">
+    return <div className="postsContainer" style={{display: 'flex', flexWrap: 'wrap'}}>
         { renderedPosts }
     </div>
 }

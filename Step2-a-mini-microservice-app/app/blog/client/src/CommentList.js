@@ -13,7 +13,7 @@ export default ( { postId } ) => {
         fetchComment();
     }, []);
     const renderedComments = comments.length ? comments.map((comment, index) => {
-        return <li>{comment.content}</li>;
+        return <li key={comment.id}>{comment.content}</li>;
     }) : null;
     return <ul>
         { renderedComments }
