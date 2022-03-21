@@ -5,14 +5,14 @@
 
 - [**第二步: 尝试做一个迷你微服务APP**](#微服务的基本知识)
 - [目录](#目录)
-  - [App 介绍](#app-介绍)
+  - [App 介绍](#APP-Preview)
   - [搭建项目](#搭建项目)
-  - [创建 Posts Service](#posts-service-creation)
-  - [创建 Comments Service](#implementing-a-comments-service)
+  - [创建 Posts Service](#创建-Post-服务)
+  - [测试 Posts Service](#测试-Posts-服务)
+  - [创建 Comments Service](#创建-Comments-服务)
   - [创建 React Project](#react-project-setup)
   - [请求次数减小的策略](#request-minimization-strategies)
   - [异步的解决方式](#an-async-solution)
-  - [异步 + Events 的一些常见疑问](#common-questions-around-async-events)
   - [Event Bus 介绍](#event-bus-overview)
   - [搭建一个最基础的 Event Bus](#a-basic-event-bus-implementation)
   - [实现发出创建 Post 的 Events](#emitting-post-creation-events)
@@ -31,13 +31,13 @@
   - [Updating Comment Content](#updating-comment-content)
   - [Dealing with Missing Events](#dealing-with-missing-events)
 
-## APP介绍
-##### 图2-01.创建 Post 和 Comments 的业务逻辑
+## APP-Preview
+##### 图2-01-创建 Post 和 Comments 的业务逻辑
 - 功能分别是发送 post 信息和发送 comment 信息
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/66b75402ea6e4eb6b66c9491ab2b54ef.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
-##### 图2-02.服务的拆分 分为 创建信息 和 展示信息
+##### 图2-02-服务的拆分 分为 创建信息 和 展示信息
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/24dacf27b3a14351bd5ee91bc6025b99.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
-##### 图2-03.React Client APP 的结构拆分，要对接上述两个服务
+##### 图2-03-React Client APP 的结构拆分，要对接上述两个服务
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/6a35a93ad8bc4066a95aead98462666b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 ## 搭建项目
 > 创建 react 客户端、post 服务、comments 服务
@@ -47,9 +47,9 @@ mkdir posts && npm init -y && npm install express cors axios nodemon
 mkdir comments && npm init -y && npm install express cors axios nodemon
 ```
 ## 创建 Post 服务
-##### 图2-04.Posts 服务架构
+##### 图2-04-Posts 服务架构
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d6126ebd45ba40e4b4afefb009473b0a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
-##### [Code-2-01.Posts 结构](./doc/code-2-01-Posts.js)
+##### [Code-2-01-Posts 结构](./doc/code-2-01-Posts.js)
 - post 提供的 get post 服务
 - get 负责把 post 缓存的数据 send 出去
 -  listen 监听端口
@@ -75,12 +75,12 @@ mkdir comments && npm init -y && npm install express cors axios nodemon
 - 返回 `{"id": "685baefe", "title": "First Post by Sirius"}`
 
 ## 创建 Comments 服务
-##### 图2-05.Comments 服务架构
+##### 图2-05-Comments 服务架构
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/622dbac56d024cf88bd32af3c94a1d65.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
-##### 图2-06.每个 post 下 都会有 一个 array 类型的 comments
+##### 图2-06-每个 post 下 都会有 一个 array 类型的 comments
 - 这里用 Object 存 post id 的键值对关系，值是 comments 的 array，而 comments 还是之前和 posts 类似的 Object 类型
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/df63f1495e694ffe884fb5ce538f0cd8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
-##### [Code-2-02.Commnets 结构](./doc/code-2-02-Comments.js)
+##### [Code-2-02-Commnets 结构](./doc/code-2-02-Comments.js)
 - 和 post 服务不同的是 
 - 因为有个 postId 的键值对关系，所以需要创建一个上述的数据结构
 - 每次取出 req 的 comments 进行 push 或 create 操作，然后重新赋值给 postId 对应 id 的 comments
@@ -102,7 +102,7 @@ mkdir comments && npm init -y && npm install express cors axios nodemon
 ```
 
 ## 创建 React 前端 APP
-##### 图2-07.React 页面结构划分
+##### 图2-07-React 页面结构划分
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/f80d4ca9455c46159aa27b509dfe8283.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 - 目前将会遇到的一些 bug
 	- `npx create-react-app client` 我在这里遇到了很大的坑，花了6个小时+买了一个腾讯云服务器才解决
@@ -123,3 +123,67 @@ mkdir comments && npm init -y && npm install express cors axios nodemon
 > 所以跳过 PostList，因为他对子组件有依赖性，子组件只有prop的依赖
 > ![在这里插入图片描述](https://img-blog.csdnimg.cn/2d31ec60923c4499863d7d53bdc5fe57.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 ##### [Code-2-04-ClientCommentCreate.js](./doc/code-2-04-ClientCommentCreate.js)
+- 和 Post create 几乎一样
+
+## 创建 React 的 Comment List 表单展示
+##### [Code-2-05-ClientCommentList.js](./doc/code-2-05-ClientCommentList.js)
+- useEffect，第二个参数为空数组，第一个函数里表示需要在 componentDidMount 执行的内容
+- 这里在组件挂载完执行 fetch 网络请求
+- 获取父组件 post 传进的 postId
+- 模板字符串拼接成参数传进 get 请求的 url 里
+
+## 创建 React 的 Post List 表单展示
+##### [Code-2-06-ClientPostList](code-2-06-ClientPostList.js)
+- 这里用 Object.values(posts).map 返回渲染后的 posts 列表
+- 包含 Comment create 和 Comment list 组件 并 传 postId
+- flex 布局，让超出视口的每个 Post card 换行：`display: 'flex', flexWrap: 'wrap'`
+
+##### 图2-08-四个服务的最终交互效果
+![在这里插入图片描述](https://img-blog.csdnimg.cn/a069aaed628a475d9f9a0b9e8e04fcee.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
+## 请求次数减少的策略
+##### 图2-09-最终实现的请求集合
+- 可以看出每一个 post 我们都需要请求一次他们对应的 comments
+- post 如果无限 请求次数就会无限
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/103c39bd6b4d4246af97b83e43035549.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
+##### 图2-10-方法一
+>对于单体同步服务的优化：一次请求，获得所有 postId 下的 comments 集合
+![在这里插入图片描述](https://img-blog.csdnimg.cn/d6af58696b2b45f889b72f5ed223aef1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
+##### 图2-11-单体同步服务的弊端
+![在这里插入图片描述](https://img-blog.csdnimg.cn/88bd50b681b7453ca61181bc6b1efc8f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
+## 异步的解决方式
+##### 图2-12-事件代理的原理
+- 比如我们的 Post 和 Comment 服务，每次创建都 emit 一个事件，事件代理负责接收事件并发送给对这个事件感兴趣（或者之前订阅过的）服务
+- 如果要想获取 Post 或 Comment 服务，就比如用 Query 服务进行获取，Query 负责收集每次服务的数据
+![在这里插入图片描述](https://img-blog.csdnimg.cn/5f0aa58637aa4948a16bfb03e5cee268.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
+## Event bus 介绍
+##### 图2-13-异步事件总线的步骤
+- Step1：Post 发起创建的事件的操作，负责 Query 的服务负责处理存储事件的操作
+- 这里并没有存 Comment
+- Step2：Comment 发起创建的事件的操作，负责 Query 的服务也负责处理
+- 这里根据之前的 Post 进行对应的 Comment 存储
+- Step3：用户想获取就从 Query 服务进行
+![在这里插入图片描述](https://img-blog.csdnimg.cn/aa03489c3bf94bb686b862ca928140be.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
+##### 图2-14-异步事件代理、事件总线 的优点
+![在这里插入图片描述](https://img-blog.csdnimg.cn/7694af01dbf0407da4d42626bdb5d0a8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
+## 搭建一个最基础的 Event bus
+##### [Code-2-07-EventBus 结构](./doc/code-2-07-EventBus.js)
+> 最基础的 event-bus 只需要提供 post 服务将 event 转发给 其他 service
+> 所以，需要接收（express） 和 发送（axios），发送给每一个订阅 events 的服务
+## 实现发出创建 Post 的 Events
+> 根据[图2-13-异步事件总线的步骤](#图2-13-异步事件总线的步骤)
+##  实现发出创建 Comment 的 Events
+## 获取 Events
+## 创建 data query 的服务
+## 对进来的 Events 进行解析
+##  使用 data query 的服务
+
+  - [再添加一个简单的服务](#adding-a-simple-feature)
+  - [过滤 Comments 的一些问题](#issues-with-comment-filtering)
+  - [第二种方式](#a-second-approach)
+  - [怎样处理更新的事件](#how-to-handle-resource-updates)
+  - [创建一个过滤 Service](#creating-the-moderation-service)
+  - [Adding Comment Moderation](#adding-comment-moderation)
+  - [Handling Moderation](#handling-moderation)
+  - [Updating Comment Content](#updating-comment-content)
+  - [Dealing with Missing Events](#dealing-with-missing-events)
