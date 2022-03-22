@@ -13,7 +13,7 @@ const commentsByPostId = {};
 app.post('/posts/:id/comments', async (req, res) => {
     const commentsId = randomBytes(4).toString('hex');
     const { content } = req.body;
-    // comments 的 添加操作 并 重新赋值给 commentsByPostId
+    // comment 的 添加操作 并 重新赋值给 commentsByPostId
     const comments = commentsByPostId[req.params.id] || [];
     comments.push({ 
         id: commentsId, 
@@ -35,27 +35,7 @@ app.post('/posts/:id/comments', async (req, res) => {
 })
 
 app.post('/events', (req, res) => {
-    const { type, data } = req.body;
-    console.log(`Received ${type} Event`);
-    if(type === 'CommentModerated') {
-        const { postId, id, status, content } = data;
-        const comments = commentsByPostId[postId];
-
-        const comment = comments.find(comment => {
-            return comment.id === id;
-        });
-        comment.status = status;
-
-        await axios.post('http://localhost:4005/events', {
-            type: 'CommentUpdated',
-            data: {
-                id,
-                status,
-                postId,
-                content
-            }
-        });
-    }
+    console.log(`Received ${req.body.type} Event`);
 
     res.send({});
 })
