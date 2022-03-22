@@ -5,16 +5,13 @@ export default ( { comments } ) => {
     const renderedComments = comments.length ? comments.map((comment, index) => {
         let content;
         let status = comment.status;
-        switch(status) {
-            case 'approved':
-                content = comment.content;
-            case 'pending':
-                content = 'This comment is await moderation';
-            case 'rejected':
-                content = 'This comment has been rejected';
-            default:
-                content = 'This comment is await moderation';
-        }
+        console.log(status)
+        if(status === 'approved') 
+            content = comment.content;
+        if(status === 'pending')
+            content = 'This comment is await moderation';
+        if(status === 'rejected')
+            content = 'This comment has been rejected';
 
         return <li key={comment.id}>{content}</li>;
     }) : null;
