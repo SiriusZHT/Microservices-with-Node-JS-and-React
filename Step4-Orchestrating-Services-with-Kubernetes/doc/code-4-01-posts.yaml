@@ -1,0 +1,16 @@
+# k8s 是可扩展的，我们可以添加进自己的项目进去，通过指定是哪个对象让 k8s 看到
+apiVersion: v1
+# 想创建的对象的 k8s 的 type
+# 在这里我们想创建一个 Pod
+kind: Pod
+# 将要创建的对象的一些配置
+metadata:
+  name: posts
+# 将要创建对象的确切属性
+spec:
+  # 可以在一个 pod 里创建 n 个 container
+  containers:
+    # 创建一个名为 posts 的 container
+    - name: posts
+      # 这个 container 需要使用到的具体的 image
+      image: sirius/posts:0.0.1
