@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comments-depl
+spec:
+  # 生成 pod 的数量
+  replicas: 1
+  # 选择器 找到 label 为 app: comments 这样键值对的 
+  selector:
+    matchLabels: 
+      app: comments
+  # pod 的具体配置
+  template:
+    metadata:
+      labels: 
+        app: comments
+    spec:
+      containers:
+        - name: comments
+          image: heysirius/comments:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comments-clusterip-srv
+spec:
+  # 默认为 type: ClusterIP 所以可以不用写
+  # type: ClusterIP
+  selector:
+    app: comments
+  ports:
+    - name: comments
+      protocol: TCP
+      # 在 cluster 中的 port
+      port: 4001
+      # Pod 的 port
+      targetPort: 4001
+
