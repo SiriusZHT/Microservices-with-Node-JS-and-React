@@ -1,0 +1,39 @@
+# https://github.com/SiriusZHT/Microservices-with-Node-JS-and-React/commit/c4b0c04a2b0a55b1b6ec3207b93836e8ea289170#diff-0fc4a8b4c4fbbcb7a76add4e004853dcf101522979e15895232886751da6c0f9
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-depl
+spec:
+  # 生成 pod 的数量
+  replicas: 1
+  # 选择器 找到 label 为 app: posts 这样键值对的 
+  selector:
+    matchLabels: 
+      app: posts
+  # pod 的具体配置
+  template:
+    metadata:
+      labels: 
+        app: posts
+    spec:
+      containers:
+        - name: posts
+          image: heysirius/posts:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-clusterip-srv
+spec:
+  # 默认为 type: ClusterIP 所以可以不用写
+  # type: ClusterIP
+  selector:
+    app: posts
+  ports:
+    - name: posts
+      protocol: TCP
+      # 在 cluster 中的 port
+      port: 4000
+      # Pod 的 port
+      targetPort: 4000
+

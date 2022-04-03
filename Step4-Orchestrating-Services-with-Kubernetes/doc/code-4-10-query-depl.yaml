@@ -1,0 +1,39 @@
+# https://github.com/SiriusZHT/Microservices-with-Node-JS-and-React/commit/c4b0c04a2b0a55b1b6ec3207b93836e8ea289170#diff-33e8de538accf773212226a3e4ec3b272594a196eb11e429380c1d94b3070ccd
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: query-depl
+spec:
+  # 生成 pod 的数量
+  replicas: 1
+  # 选择器 找到 label 为 app: query 这样键值对的 
+  selector:
+    matchLabels: 
+      app: query
+  # pod 的具体配置
+  template:
+    metadata:
+      labels: 
+        app: query
+    spec:
+      containers:
+        - name: query
+          image: heysirius/query:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: query-clusterip-srv
+spec:
+  # 默认为 type: ClusterIP 所以可以不用写
+  # type: ClusterIP
+  selector:
+    app: query
+  ports:
+    - name: query
+      protocol: TCP
+      # 在 cluster 中的 port
+      port: 4002
+      # Pod 的 port
+      targetPort: 4002
+

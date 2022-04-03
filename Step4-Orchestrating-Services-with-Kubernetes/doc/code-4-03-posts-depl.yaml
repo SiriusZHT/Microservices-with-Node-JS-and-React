@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-depl
+spec:
+  # 生成 pod 的数量
+  replicas: 1
+  # 选择器 找到 label 为 app: posts 这样键值对的 
+  selector:
+    matchLabels: 
+      app: posts
+  # pod 的具体配置
+  template:
+    metadata:
+      labels: 
+        app: posts
+    spec:
+      containers:
+        - name: posts
+          # 版本号改成 :latest
+          image: heysirius/posts:latest

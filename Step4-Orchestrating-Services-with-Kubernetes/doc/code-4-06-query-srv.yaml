@@ -1,0 +1,16 @@
+# https://github.com/SiriusZHT/Microservices-with-Node-JS-and-React/commit/3f87cfd4382d7fb6e8b5a2087e89a09d8e3a9c88#diff-63cf548ae8b46609d19d57a25229e3ce76cd011b1bda1dadc55fc30bdca66169
+apiVersion: v1
+kind: Service
+metadata:
+  name: query-srv
+spec:
+  type: NodePort
+  selector:
+    app: query
+  ports:
+    - name: query
+      protocol: TCP
+      # 在 cluster 中的 port
+      port: 4002
+      # Pod 的 port
+      targetPort: 4002

@@ -1,0 +1,39 @@
+# https://github.com/SiriusZHT/Microservices-with-Node-JS-and-React/commit/c4b0c04a2b0a55b1b6ec3207b93836e8ea289170#diff-d79f69e3db9a85c63c435077b100df3668bbabba440339fa860afadf07dd70bf
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-bus-depl
+spec:
+  # 生成 pod 的数量
+  replicas: 1
+  # 选择器 找到 label 为 app: event-bus 这样键值对的 
+  selector:
+    matchLabels: 
+      app: event-bus
+  # pod 的具体配置
+  template:
+    metadata:
+      labels: 
+        app: event-bus
+    spec:
+      containers:
+        - name: event-bus
+          image: heysirius/event-bus:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-bus-clusterip-srv
+spec:
+  # 默认为 type: ClusterIP 所以可以不用写
+  # type: ClusterIP
+  selector:
+    app: event-bus
+  ports:
+    - name: event-bus
+      protocol: TCP
+      # 在 cluster 中的 port
+      port: 4005
+      # Pod 的 port
+      targetPort: 4005
+
