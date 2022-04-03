@@ -13,19 +13,27 @@ app.get('/events', (req, res) => {
     res.send(events);
 })
 
-app.post('/events', (req, res) => {
+app.post('/events', async (req, res) => {
     const event = req.body;
     console.log('event bus received ', event);
     events.push(event);
-    axios.post('http://121.5.150.79:4000/events', event); // post
-    axios.post('http://121.5.150.79:4001/events', event); // comment 
-    axios.post('http://121.5.150.79:4002/events', event); // query
-    axios.post('http://121.5.150.79:4003/events', event); // moderation
+    await axios.post('http://posts-clusterip-srv:4000/events', event).catch((err) => {console.log(err.message);}); // post
+    // console.log('Emit to post');
+
+    await axios.post('http://comments-clusterip-srv:4001/events', event).catch((err) => {console.log(err.message);}); // comment 
+    // console.log('Emit to comment');
+
+    await axios.post('http://query-clusterip-srv:4002/events', event).catch((err) => {console.log(err.message);}); // query
+    // console.log('Emit to query');
+
+    await axios.post('http://moderation-clusterip-srv:4003/events', event).catch((err) => {console.log(err.message);}); // moderation
+    // console.log('Emit to moderation');
 
     res.send({status: 'OK'});
 })
 
 
 app.listen(4005, () => {
+    console.log('V20');
     console.log('listening on port 4005');
 }) 

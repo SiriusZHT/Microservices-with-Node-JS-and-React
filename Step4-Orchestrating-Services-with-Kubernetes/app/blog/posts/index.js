@@ -8,7 +8,12 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const posts = {};
+const posts = {
+    // "123": {
+    //     "id": "123",
+    //     "title": "First Post by Sirius"
+    // }
+};
 
 app.get('/posts', (req, res) => {
     res.send(posts);
@@ -22,7 +27,7 @@ app.post('/posts', async (req, res) => {
         id, title 
     };
 
-    await axios.post('http://121.5.150.79:4005/events', {
+    await axios.post('http://event-bus-clusterip-srv:4005/events', {
         type: 'PostCreated',
         data: {
             id, title
