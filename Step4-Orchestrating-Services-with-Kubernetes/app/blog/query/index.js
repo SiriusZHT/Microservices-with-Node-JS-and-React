@@ -57,6 +57,7 @@ app.post('/events', (req, res) => {
 
 // 4000 post 4001 comments
 app.listen(4002, async () => {
+    console.log('xxx');
     console.log('Listening on port 4002');
 
     const res = await axios.get('http://event-bus-clusterip-srv:4005/events');

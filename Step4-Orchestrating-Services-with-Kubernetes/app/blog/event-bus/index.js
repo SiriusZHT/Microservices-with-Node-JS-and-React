@@ -28,12 +28,12 @@ app.post('/events', async (req, res) => {
 
     await axios.post('http://moderation-clusterip-srv:4003/events', event).catch((err) => {console.log(err.message);}); // moderation
     // console.log('Emit to moderation');
-
+    
     res.send({status: 'OK'});
 })
 
 
 app.listen(4005, () => {
-    console.log('V20');
+    console.log('xxx');
     console.log('listening on port 4005');
 }) 

@@ -1,0 +1,45 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  namespace: ingress-nginx
+  annotations:
+    # kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    # service.beta.kubernetes.io/do-loadbalancer-hostname: "siriuszht.com"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: siriuszht.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /posts/create
+            backend:
+              service:
+                name: posts-clusterip-srv
+                port:
+                  number: 4000
+          - pathType: Prefix
+            path: /posts
+            backend:
+              service:
+                name: query-clusterip-srv
+                port:
+                  number: 4002
+          - pathType: Prefix
+            path: /posts/?(.*)/comments
+            backend:
+              service:
+                name: comments-clusterip-srv
+                port:
+                  number: 4001
+          - pathType: Prefix
+            path: /?(.*)
+            backend:
+              service:
+                name: client-clusterip-srv
+                port:
+                  number: 3000
