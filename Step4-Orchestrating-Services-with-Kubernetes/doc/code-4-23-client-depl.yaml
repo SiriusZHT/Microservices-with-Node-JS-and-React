@@ -1,40 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-bus-depl
+  name: client-depl
   namespace: ingress-nginx
 spec:
   # 生成 pod 的数量
   replicas: 1
-  # 选择器 找到 label 为 app: event-bus 这样键值对的 
+  # 选择器 找到 label 为 app: client 这样键值对的 
   selector:
     matchLabels: 
-      app: event-bus
+      app: client
   # pod 的具体配置
   template:
     metadata:
       labels: 
-        app: event-bus
+        app: client
     spec:
       containers:
-        - name: event-bus
-          image: heysirius/event-bus:latest
+        - name: client
+          image: heysirius/client:latest
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: event-bus-clusterip-srv
+  name: client-clusterip-srv
   namespace: ingress-nginx
 spec:
   # 默认为 type: ClusterIP 所以可以不用写
   # type: ClusterIP
   selector:
-    app: event-bus
+    app: client
   ports:
-    - name: event-bus
+    - name: client
       protocol: TCP
       # 在 cluster 中的 port
-      port: 4005
+      port: 3000
       # Pod 的 port
-      targetPort: 4005
+      targetPort: 3000
 

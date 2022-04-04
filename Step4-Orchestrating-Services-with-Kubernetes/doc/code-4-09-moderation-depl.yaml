@@ -1,8 +1,8 @@
-# https://github.com/SiriusZHT/Microservices-with-Node-JS-and-React/commit/c4b0c04a2b0a55b1b6ec3207b93836e8ea289170#diff-fcc72f6bdd6cf1ce684d95e1bde32cd43f88adddc06856c0436c10dd7ab29fe1
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: moderation-depl
+  namespace: ingress-nginx
 spec:
   # 生成 pod 的数量
   replicas: 1
@@ -24,6 +24,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: moderation-clusterip-srv
+  namespace: ingress-nginx
 spec:
   # 默认为 type: ClusterIP 所以可以不用写
   # type: ClusterIP
