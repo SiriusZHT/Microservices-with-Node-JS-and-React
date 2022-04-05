@@ -2,6 +2,10 @@
 
 ## 使用 Kubernetes 部署服务
 
+> 本文格式是针对 github 的 Markdown，所以目录链接 和 代码链接打不开
+
+- 你可以点击这里查看本文的 [Github README 项目链接也是这个哦](https://github.com/SiriusZHT/Microservices-with-Node-JS-and-React/tree/main/Step4-Orchestrating-Services-with-Kubernetes)
+
 ## 目录
 
 - [**第四步: 使用 Kubernetes 部署服务**](#使用-Kubernetes-部署服务)
@@ -621,3 +625,5 @@ build:
 ```
 
 - 最后 `skaffold dev`即可完成所有相关 image 和 Kubernetes 配置文件的应用
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/038f7abbef494df3ac511e196c559413.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)

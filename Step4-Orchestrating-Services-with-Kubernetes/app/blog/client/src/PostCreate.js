@@ -14,7 +14,7 @@ export default () => {
         // 想更清楚的了解区别，看看这个在线调试：http://www.gbtags.com/gb/debug/de1361ab-0605-4c6d-a21b-8c082e3bd251.htm
         event.preventDefault();
 
-        await axios.post('http://example1.com/posts/create', {
+        await axios.post('http://www.demo.io/posts/create', {
             title
         })
         // 每次完成 都 重置

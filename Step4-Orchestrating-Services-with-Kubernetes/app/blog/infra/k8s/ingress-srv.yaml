@@ -7,12 +7,10 @@ metadata:
     # kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    # service.beta.kubernetes.io/do-loadbalancer-hostname: "siriuszht.com"
 spec:
   ingressClassName: nginx
   rules:
-    - host: siriuszht.com
+    - host: www.demo.io
       http:
         paths:
           - pathType: Prefix

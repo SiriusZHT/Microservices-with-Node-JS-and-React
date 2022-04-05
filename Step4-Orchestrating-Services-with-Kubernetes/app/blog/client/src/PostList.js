@@ -7,7 +7,7 @@ import CommentList from "./CommentList";
 export default () => {
     const [posts, setPosts] = useState('');
     const fetchPosts = async () => {
-        const res = await axios.get('http://example1.com/posts');
+        const res = await axios.get('http://www.demo.io/posts');
         // console.log(res.data);
         setPosts(res.data);
     }
@@ -18,7 +18,7 @@ export default () => {
         return (
             <div
                 className="card"
-                style={{ width: '32%', marginBottom: '20px', marginLeft: '20px'}}
+                style={{ width: '30%', marginBottom: '20px', marginLeft: '20px'}}
                 key={post.id}
             >
                 <div className="card-body">
