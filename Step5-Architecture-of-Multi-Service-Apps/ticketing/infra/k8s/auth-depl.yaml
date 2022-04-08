@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: cygnetops/auth
+          image: heysirius/auth
 ---
 apiVersion: v1
 kind: Service
