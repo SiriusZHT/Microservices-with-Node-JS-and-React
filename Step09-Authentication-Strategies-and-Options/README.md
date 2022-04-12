@@ -36,7 +36,7 @@
 - 有很多方法可以解决，没有一种方法是“绝对正确的”
 - 下面是一些解决方案
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 身份验证策略存在的问题
 
@@ -60,7 +60,7 @@
 - 因为 即使 Auth 挂了，我们也能进行 单个服务的 认证功能
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/cc677202e32347dbad37f9808452787f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 选择哪个 Option
 
@@ -76,7 +76,7 @@ Option #2
 - Auth 服务宕机？NBCS！
 - 有的用户被封号了？可是我 5 分钟前刚把认证过后的 Key 给了他们...
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 解决 Option #2 存在的问题
 
@@ -93,7 +93,7 @@ Option #2
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/356cbf17b7bb4100954d0e0f7eb4b4ee.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 - 被 ban 的用户还是可以用 JWT/Cookie 对非 Auth 的服务进行认证，这样等于没被 ban，所以是个大问题
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 回顾 Cookies 和 JWT's 区别
 
@@ -112,7 +112,7 @@ Option #2
 | 在浏览器和服务器之间移动任何类型的数据 | 存储我们想要的任何数据                      |
 | 由浏览器自动管理                       | 必须手动服务端上管理                        |
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 在 微服务 中 Auth 认证的一些细节
 
@@ -133,7 +133,7 @@ Option #2
 - 必须在不同语言之间易于理解
 - 不需要任何后台数据存储
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### JWT 在 SSR 中遇到的问题
 
@@ -145,7 +145,7 @@ Option #2
 - 我们使用 Cookie 存储 JWT 信息，因为 Cookie 是浏览器管理的，能够持续存储，且每次请求的时候浏览器都会主动带上 Cookie
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/70aa14a38d574fa68a916299db098ae6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Cookie 和 加密
 
@@ -166,7 +166,7 @@ Auth 必须满足的条件：
 
 - 不需要任何后台数据存储
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### cookie-session 和 express-session 的区别
 
@@ -258,7 +258,7 @@ app.use(
 );
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 生成 a JWT
 
@@ -281,7 +281,7 @@ req.session = {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### JWT Signing Keys
 
@@ -290,14 +290,14 @@ req.session = {
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/579436a8c0c742979cebad5ede61b31e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/03998410652e4eb8aad71171cfbaf7f8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 使用 Kubernetes 安全地存储 secret
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/b414c39464e441508fce022400939e74.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/5ead40a2c14940d0a340a210ddb7860c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 创建和访问 Secrets
 
@@ -309,7 +309,7 @@ kubectl get secrets
 kubectl describe secret jwt-secret
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 访问 Pod 中的环境变量
 
@@ -319,7 +319,7 @@ if (!process.env.JWT_KEY) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 通用的 Response 属性
 
@@ -327,7 +327,7 @@ if (!process.env.JWT_KEY) {
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/03c81c30ca164036af8d807074d8099b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/70be7dbe71a74222bdf8c5bbfb933e49.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 格式化 JSON 属性
 
@@ -371,7 +371,7 @@ const userSchema = new mongoose.Schema(
 );
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 用户登录的工作流
 
@@ -407,7 +407,7 @@ router.post(
 export { router as signinRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 通用的请求验证中间件
 
@@ -499,7 +499,7 @@ router.post(
 export { router as signinRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 登录的代码逻辑
 
@@ -564,14 +564,14 @@ router.post(
 export { router as signinRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 处理当前用户
 
 - 为什么要进行当前用户的处理 - 因为在每一次进行 ReactAPP 的时候，header 上面我们需要按照用户的登录状态，展现 signin signup 还是 signout，详见第 11 章
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/436ccdc540734683abdedbf3945de54b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 返回当前用户
 
@@ -597,7 +597,7 @@ router.get("/api/users/currentuser", (req, res) => {
 export { router as currentUserRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Signing Out
 
@@ -615,7 +615,7 @@ router.post("/api/users/signout", (req, res) => {
 export { router as signoutRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 创建处理当前用户的 Middleware
 
@@ -644,7 +644,7 @@ export const currentUser = (
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Augmenting Type 扩充类型的定义
 
@@ -703,7 +703,7 @@ router.get("/api/users/currentuser", currentUser, (req, res) => {
 export { router as currentUserRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 路由访问权限
 
@@ -770,4 +770,4 @@ router.get("/api/users/currentuser", currentUser, requireAuth, (req, res) => {
 export { router as currentUserRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
