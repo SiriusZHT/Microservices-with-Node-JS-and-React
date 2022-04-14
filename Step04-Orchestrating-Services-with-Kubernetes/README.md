@@ -399,7 +399,7 @@ kubectl apply -f ingress-nginx.yaml
 
 ##### [code-4-18-ingress-nginx.yaml](./doc/code-4-18-ingress-nginx.yaml)
 
-- macOS 下，可以像 centos Linux 一样的操作 - 同时还可以`helm upgrade --install ingress-nginx ingress-nginx \ --repo https://kubernetes.github.io/ingress-nginx \ --namespace ingress-nginx --create-namespac`
+- macOS 下，可以像 centos Linux 一样的操作 - 同时还可以`helm upgrade --install ingress-nginx ingress-nginx \ --repo https://kubernetes.github.io/ingress-nginx \ --namespace ingress-nginx --create-namespace`
   前提是你已经`brew install helm`
   具体可见 kubernetes ingress-nginx 官网 [https://kubernetes.github.io/ingress-nginx/deploy/#quick-start](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
 

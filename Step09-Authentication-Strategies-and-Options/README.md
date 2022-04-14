@@ -262,7 +262,7 @@ app.use(
 
 **[⬆ back to top](#目录)**
 
-### 生成 a JWT
+### 生成 JWT
 
 [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 
