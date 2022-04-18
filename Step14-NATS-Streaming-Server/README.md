@@ -28,7 +28,7 @@
 
 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### NATS Streaming Server 介绍
 
@@ -41,7 +41,7 @@ NATS Streaming Server
 - 在 docker 中使用 '[nats-streaming](https://hub.docker.com/_/nats-streaming)' 的镜像
 - [Event-Driven Microservices With NATS Streaming](https://www.slideshare.net/shijucv/eventdriven-microservices-with-nats-streaming-95207688)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 创建 NATS Streaming 的 Deployment
 
@@ -104,7 +104,7 @@ skaffold dev
 kubectl get pods
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### NATS Streaming 的工作流程
 
@@ -117,7 +117,7 @@ kubectl get pods
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/c9d86a68ac9c4c759d67f3f871cc487e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 创建一个 NATS 测试项目
 该项目的目的
@@ -139,7 +139,7 @@ stan.on('connect', () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 连接到 NATS Pod 的几种方式
 Option #1
@@ -166,7 +166,7 @@ cd ticketing/nats-test
 npm run publish
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Publishing Events
 
@@ -195,7 +195,7 @@ stan.on('connect', () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Listening For Data
 
@@ -227,7 +227,7 @@ stan.on('connect', () => {
 
 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 访问 Events 的 Data
 
@@ -257,7 +257,7 @@ stan.on('connect', () => {
 ```
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/149c8bca817a4119ae05fd90f9092d53.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 生成 Client ID
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/3407d0965b0e4cacba70b593b9c86cd9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
@@ -275,7 +275,7 @@ const stan = nats.connect('ticketing', randomBytes(4).toString('hex'), {
 ```
 现在就不会报错啦！
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/6af06e3507df4329ac42ad4611094a17.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Queue Groups
 由于后期 Listener 的种类太多，所以不得不进行 Listener 的分组
@@ -295,7 +295,7 @@ const stan = nats.connect('ticketing', randomBytes(4).toString('hex'), {
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/bf50cf4c55924e9b8af75ec87fe41d78.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 手动开启 Ack Mode
 - 有一种可能，event 到达的服务突然挂了，没接收到 event 或者 event 处理的时候出现问题
@@ -349,7 +349,7 @@ stan.on('connect', () => {
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/7cae4ced038f496883310dcf7f989142.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 这个时候没有得到 Ack 的 event #22 也在 #23 Ack 过后收到并 Ack 了
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 查看 Client 的健康状态
 
@@ -375,7 +375,7 @@ goto http://localhost:8222/streaming/channelsz?subs=1
 > 为什么会出现这种，某个 subscriptions 重启之后会出现两个 然后过一段时间又变成一个呢？
 > - 因为 nats 认为可能只是暂时断开了，所以给了个暂时存活时间
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 优雅的关闭 Client 
 
@@ -416,7 +416,7 @@ process.on('SIGINT', () => stan.close());
 process.on('SIGTERM', () => stan.close());
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 很重要-并发遇到的问题
 举一个 银行 存钱 deposit 取钱 withdraw 的例子
@@ -449,7 +449,7 @@ process.on('SIGTERM', () => stan.close());
 ![请添加图片描述](https://img-blog.csdnimg.cn/18047789831b407082aa053ba0f2a71d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 很重要-常见问题
 这种并发问题
@@ -475,7 +475,7 @@ Solution that won't work #2 - Figure out every possible error case and write cod
 - Engineering time = $$$$$
 - Does it matter if two tweets are out of order?
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 很重要-更多可能的并发解决方案
 
@@ -514,7 +514,7 @@ Solution that won't work #2 - Figure out every possible error case and write cod
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/efd4f6d67ae44ea4b6932038cfd160d6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/200a6b58ec5b4adaa6c7429537af4fae.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 很重要-解决并发问题
 
@@ -542,13 +542,13 @@ Solution that won't work #2 - Figure out every possible error case and write cod
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/5de8b9bbacf346c596b61aa8ea17cef3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 在 Tickets App 中进行并发控制
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/49b80efae344458199aa76ab99fe3965.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Event Redelivery
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/52221a74d7a14df4b07fbd9076bf0936.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center)
@@ -561,7 +561,7 @@ const options = stan
   .setDeliverAllAvailable();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 持久 Subscription 订阅
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/239b8b5a380a4f61b33374439bdbf633.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
@@ -581,6 +581,6 @@ const subscription = stan.subscribe(
 );
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 
