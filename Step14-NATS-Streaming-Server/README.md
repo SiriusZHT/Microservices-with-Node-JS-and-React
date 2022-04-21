@@ -1,5 +1,5 @@
 ## 目录
-- [**CRUD & Test server**](#CRUD-&-Test-server)
+- [**NATS Streaming Server**](#NATS-Streaming-Server)
 - [目录](#目录)
   - [现在该做什么](#现在该做什么)
   - [NATS Streaming Server 介绍](#NATS-Streaming-Server-介绍)
@@ -570,9 +570,9 @@ const options = stan
 ```typescript
 const options = stan
   .subscriptionOptions()
-  .setManualAckMode(true)
-  .setDeliverAllAvailable()
-  .setDurableName('accounting-service');
+  .setManualAckMode(true) // 确保 event 精确交付
+  .setDeliverAllAvailable() // 确保 Listener 在第一次启动的时候 收到所有的 groupname 的 events 
+  .setDurableName('accounting-service'); // 确保 Listener 在之后重启的时候 收到所有断点之后的 events
 
 const subscription = stan.subscribe(
   'ticket:created',
