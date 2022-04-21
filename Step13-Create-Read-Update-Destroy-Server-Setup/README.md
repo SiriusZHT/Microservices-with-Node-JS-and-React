@@ -50,7 +50,7 @@
 - Write Dockerfile
 - Create index.ts to run project
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Project Setup
 
@@ -61,7 +61,7 @@ docker build -t heysirius/tickets .
 docker push heysirius/tickets
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Running the Ticket Service
 
@@ -76,7 +76,7 @@ skaffold dev
 ```
 
 如果已经在 skaffold 下了，其实可以直接跳过这两个 Step，因为自动化部署
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Mongo Connection URI
 
@@ -126,7 +126,7 @@ try {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Auth 服务同样修改 MONGO_URI 配置
 
@@ -148,7 +148,7 @@ try {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 先写 test 再写业务代码的习惯
 
@@ -168,7 +168,7 @@ it("returns an error if an invalid price is provided", async () => {});
 it("creates a ticket with valid inputs", async () => {});
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 创建 Router
 
@@ -199,7 +199,7 @@ export { router as createTicketRouter };
 app.use(createTicketRouter);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 增加单个微服务的 Auth 认证机制
 
@@ -231,7 +231,7 @@ router.post("/api/tickets", requireAuth, (req: Request, res: Response) => {
 export { router as createTicketRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 在测试期间伪造身份验证
 
@@ -256,7 +256,7 @@ https://www.base64decode.org/
 - Take JSON and encode it as base64
 - return a string thats the cookie with encoded data
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Building a Session
 
@@ -297,7 +297,7 @@ global.signin = () => {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 测试无效请求
 
@@ -344,7 +344,7 @@ it("returns an error if an invalid price is provided", async () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Title 和 Price 的验证
 
@@ -378,7 +378,7 @@ router.post(
 export { router as createTicketRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 用 TypeScript 对 Mongoose 进行约束
 
@@ -405,7 +405,7 @@ interface TicketModel extends mongoose.Model<TicketDoc> {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 定义 Ticket Model
 
@@ -444,7 +444,7 @@ const Ticket = mongoose.model<TicketDoc, TicketModel>("Ticket", ticketSchema);
 export { Ticket };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 在 Route Handler 的进行数据库操作
 
@@ -508,7 +508,7 @@ router.post(
 export { router as createTicketRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 测试 Show Tickets 的 Routes
 
@@ -541,7 +541,7 @@ it("returns the ticket if the ticket is found", async () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 不可预料的错误
 
@@ -572,7 +572,7 @@ app.use(showTicketRouter);
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/786c083e447b44e7a3d81d5bc843a099.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### What's that Error?!
 
@@ -592,7 +592,7 @@ it("returns a 404 if the ticket is not found", async () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 更好的 Error Logging 以便于测试
 
@@ -617,7 +617,7 @@ export const errorHandler = (
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### index 路由 和 测试
 
@@ -667,7 +667,7 @@ export { router as indexTicketRouter };
 app.use(indexTicketRouter);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Ticket Updating
 
@@ -699,7 +699,7 @@ it("returns a 401 if the user is not authenticated", async () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Handling Updates
 
@@ -734,7 +734,7 @@ router.put(
 export { router as updateTicketRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 权限判断
 
@@ -806,7 +806,7 @@ const payload = {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 最后 Update 的 Code
 
@@ -919,4 +919,4 @@ router.put(
 export { router as updateTicketRouter };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
