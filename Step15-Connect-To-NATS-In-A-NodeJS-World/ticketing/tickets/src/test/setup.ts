@@ -5,16 +5,16 @@ import { app } from "../app";
 import jwt from "jsonwebtoken";
 
 declare global {
-  namespace NodeJS {
-    interface Global {
-      signin(): string[];
-    }
-  }
+//   namespace NodeJS {
+//     interface Global {
+     var signin: () => string[];
+    // }
+//   }
 }
 
 let mongo: any;
 beforeAll(async () => {
-  process.env.JWT_KEY = "asdfasdf";
+  process.env.JWT_KEY = "asdf";
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
   mongo = new MongoMemoryServer();

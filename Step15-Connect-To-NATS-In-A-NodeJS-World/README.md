@@ -1,26 +1,26 @@
-## **Section 15: Connecting to NATS in a Node JS World**
+## 连接 NATS Streaming Server
 
-## Table of Contents
+- [连接 NATS Streaming Server](#连接-NATS-Streaming-Server)
+- [目录](#目录)
+  - [可复用的 NATS Listener](#可复用的-NATS-Listener)
+  - [Listener 的 Abstract Class](#Listener-的-Abstract-Class)
+  - [继承 Listener 类](#继承-Listener-类)
+  - [重构 Listener 代码](#重构-Listener-代码)
+  - [使用 TypeScript 进行 Listener Validation](#使用-TypeScript-进行-Listener-Validation)
+  - [Subjects 的枚举](#Subjects-的枚举)
+  - [TicketCreatedEvent 的 interface](#TicketCreatedEvent-的-interface)
+  - [强制 Listener 应用自定义的 Event 和 Event 内部的参数](#强制-Listener-应用自定义的-Event-和-Event-内部的参数)
+  - [Quick Note: 'readonly' in Typescript](#Quick-Note:-'readonly'-in-Typescript)
+  - [在 Create Listener 中 对 Create Event 的 data 进行约束](#在-Create-Listener-中-对-Create-Event-的-data-进行约束)
+  - [现在的架构](#现在的架构)
+  - [Publisher 的 abstract 和 extends](#Publisher-的-abstract-和-extends)
+  - [使用 Publisher](#使用-Publisher)
+  - [Event Publication 的 异步操作](#Event-Publication-的-异步操作)
+  - [对于该项目通用事件模块缺点分析](#对于该项目通用事件模块缺点分析)
+  - [更新 npm 的 Common Module](#更新-npm-的-Common-Module)
+  - [重启 NATS](#重启-NATS)
 
-- [**Section 15: Connecting to NATS in a Node JS World**](#section-15-connecting-to-nats-in-a-node-js-world)
-- [Table of Contents](#table-of-contents)
-  - [Reusable NATS Listeners](#reusable-nats-listeners)
-  - [The Listener Abstract Class](#the-listener-abstract-class)
-  - [Extending the Listener](#extending-the-listener)
-  - [Quick Refactor](#quick-refactor)
-  - [Leveraging TypeScript for Listener Validation](#leveraging-typescript-for-listener-validation)
-  - [Subjects Enum](#subjects-enum)
-  - [Custom Event Interface](#custom-event-interface)
-  - [Enforcing Listener Subjects](#enforcing-listener-subjects)
-  - [Quick Note: 'readonly' in Typescript](#quick-note-readonly-in-typescript)
-  - [Enforcing Data Types](#enforcing-data-types)
-  - [Where Does this Get Used?](#where-does-this-get-used)
-  - [Custom Publisher](#custom-publisher)
-  - [Using the Custom Publisher](#using-the-custom-publisher)
-  - [Awaiting Event Publication](#awaiting-event-publication)
-  - [Common Event Definitions Summary](#common-event-definitions-summary)
-  - [Updating the Common Module](#updating-the-common-module)
-  - [Restarting NATS](#restarting-nats)
+
 
 ### 可复用的 NATS Listener
 
@@ -42,7 +42,7 @@ subscription.on("message", (msg: Message) => {
 - 有很多样式和配置来 publish/receive 我们的 event 信息
 - 所以我们想重新写一个通用的 NATS Listener 抽象类 来重构 NATS Listener，实现定制化 publish/receive，并处理之后的操作
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Listener 的 Abstract Class
 
@@ -93,7 +93,7 @@ abstract class Listener {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 继承 Listener 类
 
@@ -112,7 +112,7 @@ class TicketCreatedListener extends Listener {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 重构 Listener 代码
 
@@ -145,7 +145,7 @@ process.on("SIGINT", () => stan.close());
 process.on("SIGTERM", () => stan.close());
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 使用 TypeScript 进行 Listener Validation
 
@@ -157,7 +157,7 @@ process.on("SIGTERM", () => stan.close());
 - 并且如果 subject 和 data 并不关联，TypeScript 还需要进行报错
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/fde9121239054c30a775e8ddd907c912.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Subjects 的枚举
 
@@ -177,7 +177,7 @@ export enum Subjects {
 // printSubject(Subjects[0])
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### TicketCreatedEvent 的 interface
 
@@ -195,7 +195,7 @@ export interface TicketCreatedEvent {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 强制 Listener 应用自定义的 Event 和 Event 内部的参数
 
@@ -225,7 +225,7 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Quick Note: 'readonly' in Typescript
 
@@ -244,7 +244,7 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 在 Create Listener 中 对 Create Event 的 data 进行约束
 
@@ -265,7 +265,7 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 现在的架构
 
@@ -274,7 +274,7 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/361e78ad7d66489983a1fececaf9c9a7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Publisher 的 abstract 和 extends
 
@@ -315,7 +315,7 @@ export class TicketCreatedPublisher extends Publisher<TicketCreatedEvent> {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 使用 Publisher
 
@@ -333,7 +333,7 @@ stan.on("connect", () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### Event Publication 的 异步操作
 
@@ -375,14 +375,14 @@ stan.on("connect", async () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 对于该项目通用事件模块缺点分析
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/77edfbae56fb40f88a3cb82766c75672.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/400bcfbaff6d4bffa34785bcc02d0805.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 更新 npm 的 Common Module
 
@@ -393,7 +393,7 @@ stan.on("connect", async () => {
 - ticket-updated-event.ts
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/3e8ac50ef47d4b03a92dcb122a519e4a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5ZeoU2lyaXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
 
 ### 重启 NATS
 
@@ -402,4 +402,4 @@ kubectl get pods
 kubectl delete pod nats-depl-786b8cff8d-xd4tn
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#目录)**
